@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Portofolio-Wahyu Rahmanto-FE3123393</title>
+</head>
+
+<body class="font-['Rubik']">
+  <header class="inline">
+    <nav class="flex bg-teal-300 sticky p-5 top-0">
+        <div class="float-left ml-7 text-xl  text-stone-700 font-bold">
+            <a>My Portofolio</a>
+        </div>
+        <div class="w-4/5 sm:float-right">
+            <ul class="text-right ml-20 mt-1">
+                <li class="mr-6 inline">
+                    <a class="text-slate-50 font-medium hover:text-stone-700" href="#">About Me</a>
+                </li>
+                <li class="mr-6 inline">
+                    <a class="text-slate-50 font-medium hover:text-stone-700" href="#">Content</a>
+                </li>
+                <li class="mr-6 inline">
+                    <a class="text-slate-50 font-medium hover:text-stone-700" href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+      </nav>
+    </header>
+
+    <div class="p-10">
+      <section>
+        <h1 class="text-3xl font-bold">Hello...</h1> 
+        <h3 class="text-2xl font-bold">Welcome to my portfolio page</h3>
+          <figure class="mt-2">
+            <img class="rounded-md" width="200" src="./assets/myprofile.png">
+          </figure>  
+      </section>
+
+      <div class="lg:grid lg:grid-cols-2 lg:gap-5">
+      <section>
+        <h2 class="text-xl font-bold mt-6">About Me</h2>
+          <p class="text-justify">Perkenalkan nama saya Wahyu Rahmanto saya merupakan mahasiswa dari jurusan Ilmu Komputer di salah satu Universitas yang ada di Sulawesi Tenggara yaitu Universitas Halu Oleo.</p>
+        <h2 class="text-xl font-bold mt-6">Skill</h2>
+          <ul>
+              <li>Programming</li>
+              <li>Collaboration</li>
+              <li>Design</li>
+              <li>Video Editing</li>
+          </ul>
+        <h2 class="text-xl font-bold mt-6">Contact</h2>
+        <a class="text-teal-400 font-medium hover:text-stone-700" href="https://github.com/wahyurahmanto" target="_blank">My GitHub</a>
+        <h2 class="text-xl font-bold mt-6">Contact Me</h2>
+        <div class="w-1/2 mt-1">
+            <form action="contact" class="">
+                <label for="name" class="text-left mt-1">Name: </label>
+                <input type="text" class="border-solid border-2 border-teal-400 rounded focus:outline-none focus:border-stone-700 px-2 py-1 mt-2 mb-5" placeholder="name" />
+                <label for="email" class="text-left mt-3">Email: </label>
+                <input type="email" class="border-solid border-2 border-teal-400 rounded focus:outline-none focus:border-stone-700 px-2 py-1 mt-2 mb-5" placeholder="example@gmail.com" />
+                <label for="massage" class="text-left mt-1">Massage: </label>
+                <input type="text" class="border-solid border-2 border-teal-400 rounded focus:outline-none focus:border-stone-700 px-2 py-1 mt-2 mb-5" placeholder="message" />
+            </form>
+        </div>
+      </section>
+
+      <article class="text-justify">
+        <h2 class="text-xl font-bold mt-6">Merdeka Belajar-Kampus Merdeka</h2>
+        <figure class="mt-2">
+          <img class="rounded" width="170" src="./assets/KampusMerdeka.png">
+        </figure> 
+          <p class="mt-2">Merdeka Belajar – Kampus Merdeka, merupakan kebijakan Menteri Pendidikan dan Kebudayaan, yang bertujuan mendorong mahasiswa untuk menguasai berbagai keilmuan yang berguna untuk memasuki dunia kerja. Kampus Merdeka memberikan kesempatan bagi mahasiswa untuk memilih mata kuliah yang akan mereka ambil.</p>
+        <h2 class="text-xl font-bold mt-6">RuangguruCAMP</h2>
+        <figure class="mt-2">
+          <img class="rounded" width="170" src="./assets/RuangguruLogo.png">
+        </figure> 
+          <p class="mt-2">Ruangguru CAMP merupakan program Studi Independen Kampus Merdeka yang dikembangkan oleh Ruangguru. CAMP memiliki Learning Management System (LMS) berbasis mobile app dan desktop untuk kemudahan belajar bagi mahasiswa.</p>
+        <h2 class="text-xl font-bold mt-6">Frontend Engineering</h2>
+          <p>Menciptakan situs web berkualitas tinggi dan aplikasi yang dinamis untuk memberikan pengalaman pengguna terbaik sangat penting untuk meningkatkan daya saing sebuah produk atau layanan. Setelah menyelesaikan program ini, peserta akan dapat membangun aplikasi website yang responsif & interaktif dengan menggunakan teknologi terbaru yang banyak digunakan di industri. Lulusan program ini dapat bekerja di bidang pengembangan web, dan pengembangan perangkat lunak, dengan peran khusus sebagai Front-End Developer dan Front-End Engineer.</p>
+          <a class="text-teal-400 font-medium hover:text-stone-700" href="https://kampusmerdeka.kemdikbud.go.id/program/studi-independen/browse/d3ff9ffd-0c26-4515-a13b-20bd6609229b/6579ec51-e6fc-11ec-b4cd-0e741262272a" target="_blank">Read More</a>
+        <h2 class="text-xl font-bold mt-6">Backend Engineering</h2>
+          <p> Tanpa dukungan back-end yang baik, tampilan antarmuka (front-end/client side) website yang menarik dan interaktif akan gagal diakses oleh pengguna. Komponen backend yang buruk dapat membuat website berjalan lambat, error, hingga tidak dapat diakses. Setelah menyelesaikan program ini, peserta dapat membangun komponen back-end website dan aplikasi berbasis website yang handal dengan teknologi terbaru. Lulusan program ini dapat bekerja di bidang pengembangan web, dan pengembangan perangkat lunak, dengan peran khusus sebagai Back-End Developer, Back-End Engineer, dan Software Engineer.</p>
+          <a class="text-teal-400 font-medium hover:text-stone-700" href="https://kampusmerdeka.kemdikbud.go.id/program/studi-independen/browse/d3ff9ffd-0c26-4515-a13b-20bd6609229b/4952339e-e6fa-11ec-b8e3-0e741262272a" target="_blank">Read More</a>
+      </article>       
+      </div>          
+    </div>
+    
+    <footer class="p-4 text-center bg-teal-400 text-slate-50">
+      <p>Wahyu Rahmanto-FE3123393 | Tugas Assigment</p> 
+    </footer>
+</body>
+
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
+  form {
+    display: grid;
+  }
+</style>
+</html>
