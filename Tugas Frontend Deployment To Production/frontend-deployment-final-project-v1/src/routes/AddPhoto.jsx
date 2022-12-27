@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const parseDate = (date) => date.toISOString().slice(0, 10);
+
 const AddPhoto = () => {
   const [imageUrl, setImageUrl] = useState("");
   const [captions, setCaptions] = useState("");
@@ -8,16 +10,39 @@ const AddPhoto = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const addPhoto = (e) => {
+  const addPhoto = async (e) => {
     e.preventDefault();
-    // TODO: answer here
+    const url = "https://gallery-app-server.vercel.app/photos";
+
+    try {
+      const payload = {
+        imageUrl,
+        captions,
+        createdAt: parseDate(new Date()),
+        updatedAt: parseDate(new Date()),
+        secret,
+      };
+      const config = {
+        method: "POST",
+        body: JSON.stringify(payload),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const res = await fetch(url, config);
+      const resData = await res.json();
+      if (resData.error) setError(resData.error);
+      if (!resData.error) navigate("/photos");
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   return (
     <>
       <div className="container">
-      {error && <div className="error-msg">{error}</div>}
-        <form className="add-form"  onSubmit={addPhoto}>
+        {error && <div className="error-msg">{error}</div>}
+        <form className="add-form" onSubmit={addPhoto}>
           <label>
             Image Url:
             <input
@@ -48,7 +73,12 @@ const AddPhoto = () => {
               onChange={(e) => setSecret(e.target.value)}
             />
           </label>
-          <input className="submit-btn" type="submit" value="Submit" data-testid="submit" />
+          <input
+            className="submit-btn"
+            type="submit"
+            value="Submit"
+            data-testid="submit"
+          />
         </form>
       </div>
     </>

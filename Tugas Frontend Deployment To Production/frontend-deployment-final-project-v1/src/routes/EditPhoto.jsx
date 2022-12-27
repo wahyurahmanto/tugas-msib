@@ -1,8 +1,10 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
+const parseDate = (date) => date.toISOString().slice(0, 10);
+
 const EditPhoto = () => {
+  const url = "https://gallery-app-server.vercel.app/photos";
   const [imageUrl, setImageUrl] = useState("");
   const [captions, setCaptions] = useState("");
   const [loading, setLoading] = useState(false);
@@ -10,14 +12,38 @@ const EditPhoto = () => {
   const navigate = useNavigate();
   const { id } = useParams();
 
-  const editPhoto = (e) => {
+  const editPhoto = async (e) => {
+    const config = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        imageUrl,
+        captions,
+        updatedAt: parseDate(new Date()),
+      }),
+    };
     e.preventDefault();
-    // TODO: answer here
+    await fetch(url + `/${id}`, config);
+    navigate("/photos");
+  };
+
+  const fetchPhotos = async (id) => {
+    try {
+      setLoading(true);
+      const res = await fetch(`${url}/${id}`);
+      const data = await res.json();
+      setImageUrl(await data.imageUrl);
+      setCaptions(await data.captions);
+      setLoading(false);
+    } catch (e) {
+      setError(e.message);
+    }
   };
 
   useEffect(() => {
-    setLoading(true);
-    // TODO: answer here
+    fetchPhotos(id);
   }, [id]);
 
   if (error) return <div>Error!</div>;
@@ -50,7 +76,12 @@ const EditPhoto = () => {
                 onChange={(e) => setCaptions(e.target.value)}
               />
             </label>
-            <input className="submit-btn" type="submit" value="Submit" data-testid="submit" />
+            <input
+              className="submit-btn"
+              type="submit"
+              value="Submit"
+              data-testid="submit"
+            />
           </form>
         </div>
       )}

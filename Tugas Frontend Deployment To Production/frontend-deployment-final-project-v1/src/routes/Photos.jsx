@@ -1,37 +1,61 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Card from "../components/Card";
 
 const Photos = () => {
+  const url = "https://gallery-app-server.vercel.app/photos";
   const [photos, setPhotos] = useState([]);
-  const [sort, setSort] = useState("asc");
+  const [params, setParams] = useState(url);
+  const [sort, setSort] = useState("desc");
   const [submited, setSubmited] = useState("");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const deletePhoto = (id) => {
-    // TODO: answer here
+  const deletePhoto = async (id) => {
+    const config = {
+      method: "DELETE",
+    };
+    await fetch(url + `/${id}`, config);
+    const res = await fetch(url);
+    const data = await res.json();
+    const expectedCaptions = data
+      .filter((photo) => photo.id !== 10)
+      .map((photo) => photo);
+    setPhotos(await expectedCaptions);
   };
 
-  useEffect(() => {
+  const fetchPhotos = useCallback(async () => {
     setLoading(true);
-    // TODO: answer here
-  }, [sort, submited]);
+    try {
+      const res = await fetch(params);
+      const data = await res.json();
+      setPhotos(await data);
+    } catch (e) {
+      setError(e.message);
+    }
+    setLoading(false);
+  }, [params]);
 
   useEffect(() => {
-    setLoading(true);
-    // TODO: answer here
-  }, []);
+    fetchPhotos();
+  }, [fetchPhotos, submited, sort]);
 
-  if (error) return <h1 style={{ width: "100%", textAlign: "center", marginTop: "20px" }} >Error!</h1>;
+  if (error)
+    return (
+      <h1 style={{ width: "100%", textAlign: "center", marginTop: "20px" }}>
+        Error!
+      </h1>
+    );
 
   return (
     <>
       <div className="container">
         <div className="options">
           <select
-            onChange={(e) => setSort(e.target.value)}
+            onChange={(e) => {
+              setSort(e.target.value);
+              setParams(url + `?_sort=id&_order=${sort}`);
+            }}
             data-testid="sort"
             className="form-select"
             style={{}}
@@ -43,6 +67,7 @@ const Photos = () => {
             onSubmit={(e) => {
               e.preventDefault();
               setSubmited(search);
+              setParams(url + `?q=${search}`);
             }}
           >
             <input
